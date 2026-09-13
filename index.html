@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#06110b">
+    <title>LeafLens | Intelligent Plant Health</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <video class="video-bg" autoplay muted loop playsinline aria-hidden="true"><source src="assets/forest-background.mp4" type="video/mp4"></video>
+    <div class="video-overlay" aria-hidden="true"></div>
+    
+    <nav class="navbar">
+        <a class="brand" href="#home">
+            <span class="brand-mark">⌁</span>
+            <span>Leaf<span>Lens</span></span>
+        </a>
+
+        <div class="nav-links">
+            <a class="active" href="#home">Home</a>
+            <a href="#scanner">Scanner</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero section" id="home">
+            <div class="hero-copy reveal">
+                <div class="eyebrow"><span></span> PLANT HEALTH CHECK</div>
+                <h1>Check the health<br>of a <em>leaf.</em></h1>
+                <p class="hero-text">
+                    Capture a leaf, upload a photo, and get a simple health check in seconds.
+                </p>
+
+                <a class="primary-btn" href="#scanner">
+                    <span class="btn-icon">⌾</span>
+                    Scan a Leaf
+                    <span class="arrow">→</span>
+                </a>
+
+                <div class="hero-meta">
+                    <span><i></i> SYSTEM READY</span>
+                    <span>CAMERA • READY</span>
+                </div>
+            </div>
+
+            <div class="hero-visual reveal delay-1">
+                <div class="scan-orbit orbit-a"></div>
+                <div class="scan-orbit orbit-b"></div>
+
+                <div class="leaf-card glass-card">
+                    <div class="card-top">
+                        <span>LEAF PREVIEW</span>
+                        <span class="status-dot"></span>
+                    </div>
+                    <div class="leaf-frame">
+                        <div class="target-corner tl"></div>
+                        <div class="target-corner tr"></div>
+                        <div class="target-corner bl"></div>
+                        <div class="target-corner br"></div>
+                        <img class="leaf-image" src="assets/leaf.png" alt="Pixel art green leaf">
+                        <div class="scan-line"></div>
+                    </div>
+                    <div class="analysis-data">
+                        <div>
+                            <small>CONDITION</small>
+                            <strong class="healthy">Healthy</strong>
+                        </div>
+                        <div>
+                            <small>CONFIDENCE</small>
+                            <strong>92%</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="floating-chip chip-one glass-card">◉ Image captured</div>
+                <div class="floating-chip chip-two glass-card">✦ Image ready</div>
+            </div>
+        </section>
+
+        <section class="section scanner" id="scanner">
+            <div class="section-heading reveal">
+                <div class="eyebrow"><span></span> LEAF SCANNER</div>
+                <h2>Check a leaf<br><em>under the lens.</em></h2>
+                <p>Use your camera to capture a leaf, or upload a photo from your device.</p>
+            </div>
+
+            <div class="scanner-grid">
+                <div class="camera-panel glass-card reveal">
+                    <div class="panel-header">
+                        <span>LEAF SCANNER</span>
+                        <span class="live-badge">● READY</span>
+                    </div>
+
+                    <div class="camera-area">
+                        <video id="cameraPreview" autoplay playsinline></video>
+                        <div class="camera-placeholder" id="cameraPlaceholder">
+                            <div class="camera-symbol">⌁</div>
+                            <strong>Camera standby</strong>
+                            <span>Place a leaf in view to begin</span>
+                        </div>
+                        <div class="focus-frame"></div>
+                    </div>
+
+                    <div class="scanner-actions">
+                        <button class="primary-btn small" id="cameraButton" type="button">Open Camera <span>→</span></button>
+                        <button class="secondary-btn small capture-btn" id="captureButton" type="button" disabled>Capture Leaf</button>
+                        <label class="secondary-btn small" for="leafUpload">Upload Leaf Photo</label>
+                        <input type="file" id="leafUpload" accept="image/*">
+                    </div>
+                </div>
+
+                <div class="result-panel glass-card reveal delay-1">
+                    <div class="analysis-loader" id="analysisLoader" aria-hidden="true">
+                        <div class="loader-head">
+                            <div>
+                                <span class="loader-kicker">IMAGE CHECK</span>
+                                <strong id="loaderStatus">Inspecting image</strong>
+                            </div>
+                            <span class="loader-time" id="loaderTime">0s</span>
+                        </div>
+                        <div class="scan-chart" aria-label="Inspection progress">
+                            <svg viewBox="0 0 520 180" role="img" aria-hidden="true">
+                                <line class="chart-grid" x1="20" y1="35" x2="500" y2="35"/><line class="chart-grid" x1="20" y1="90" x2="500" y2="90"/><line class="chart-grid" x1="20" y1="145" x2="500" y2="145"/>
+                                <polyline class="chart-line" points="20,142 135,118 250,84 365,55 500,27"/>
+                                <circle class="chart-point p1" cx="20" cy="142" r="5"/><circle class="chart-point p2" cx="135" cy="118" r="5"/><circle class="chart-point p3" cx="250" cy="84" r="5"/><circle class="chart-point p4" cx="365" cy="55" r="5"/><circle class="chart-point p5" cx="500" cy="27" r="5"/>
+                            </svg>
+                            <div class="chart-labels"><span>Inspecting image</span><span>Scanning leaf</span><span>Extracting data</span><span>Checking</span><span>Result</span></div>
+                        </div>
+                    </div>
+                    <div class="panel-header">
+                        <span>CHECK RESULT</span>
+                        <span class="result-state" id="resultState">WAITING</span>
+                    </div>
+
+                    <div class="result-main">
+                        <div class="result-ring"><span id="confidence">--</span></div>
+                        <div>
+                            <small>DETECTED CONDITION</small>
+                            <h3 id="resultTitle">Ready to check</h3>
+                            <p id="resultText">Your result will appear here after you capture or upload a leaf.</p>
+                        </div>
+                    </div>
+
+                    <div class="metric-row">
+                        <div><span>Condition</span><b id="plantValue">—</b></div>
+                        <div><span>Severity</span><b id="severityValue">—</b></div>
+                        <div><span>Status</span><b id="visionValue">READY</b></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section about" id="about">
+            <div class="section-heading centered reveal">
+                <div class="eyebrow"><span></span> ABOUT LEAFLENS <span></span></div>
+                <h2>From photo to<br><em>simple result.</em></h2>
+                <p>
+                    LeafLens brings the camera, plant image, and result together in one simple workflow.
+                </p>
+            </div>
+
+            <div class="process-grid">
+                <article class="process-card glass-card reveal">
+                    <div class="number">01</div>
+                    <div class="process-icon">⌾</div>
+                    <h3>Capture</h3>
+                    <p>Capture the leaf with your camera or upload an existing photo.</p>
+                    <span class="card-line"></span>
+                </article>
+
+                <article class="process-card glass-card reveal delay-1">
+                    <div class="number">02</div>
+                    <div class="process-icon">✦</div>
+                    <h3>Check</h3>
+                    <p>The prototype checks the image and prepares a sample plant-health result.</p>
+                    <span class="card-line"></span>
+                </article>
+
+                <article class="process-card glass-card reveal delay-2">
+                    <div class="number">03</div>
+                    <div class="process-icon">⌁</div>
+                    <h3>Result</h3>
+                    <p>See the condition and a confidence score for the result.</p>
+                    <span class="card-line"></span>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <video class="footer-video" autoplay muted loop playsinline aria-hidden="true"><source src="assets/forest-background.mp4" type="video/mp4"></video>
+        <div class="footer-video-overlay" aria-hidden="true"></div>
+        <div class="footer-inner">
+            <div>
+                <a class="brand" href="#home"><span class="brand-mark">⌁</span><span>Leaf<span>Lens</span></span></a>
+                <p>A simple way to check plant leaves.</p>
+            </div>
+            <div class="contact-info">
+                <div><small>CALL</small><a href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a></div>
+                <div><small>EMAIL</small><a href="mailto:example@email.com">example@email.com</a></div>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 LeafLens <span>•</span> Intelligent Plant Health Detection</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
