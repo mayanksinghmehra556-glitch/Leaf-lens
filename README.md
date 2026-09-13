@@ -5,7 +5,7 @@ Users can capture or upload a leaf image and view an interactive health analysis
 
 ## 🚀 Live Demo
 
-👉 **[Try LeafLens](YOUR-VERCEL-LINK-HERE)**
+👉 **[Try LeafLens](https://leaf-lens-beryl.vercel.app/)**
 
 ## ✨ Features
 
